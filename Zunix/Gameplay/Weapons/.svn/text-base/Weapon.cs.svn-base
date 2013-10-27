@@ -1,0 +1,29 @@
+using Microsoft.Xna.Framework;
+using Zunix.Graphics;
+
+namespace Zunix.Weapons
+{
+    public class Weapon : AniObject
+    {
+        private Vector2 velocity;
+        public Vector2 Velocity
+        { 
+            get { return velocity; }
+            set { velocity = value; }
+        }
+
+        /// <summary>
+        /// The Y Position of a "Graph" of the weapon (Good for the parabola in AntiAircraft).
+        /// </summary>
+        private float yGraph;
+        public float YGraph
+        {
+            get { return yGraph; }
+            set { yGraph = value; }
+        }
+
+        public Weapon()
+        {
+        }
+    }
+}

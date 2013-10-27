@@ -1,0 +1,6 @@
+namespace Zunix.Weapons
+{
+    class Missiles
+    {
+    }
+}

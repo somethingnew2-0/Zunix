@@ -1,0 +1,68 @@
+8
+
+dir
+1
+http://svn.ith-inc.com/petercollins/Zunix/Content/Weapons/Lasers
+http://svn.ith-inc.com/petercollins
+
+
+
+2008-05-11T21:25:22.203076Z
+1
+peterc
+
+
+svn:special svn:externals svn:needs-lock
+
+RedLaser2Small.png
+file
+
+
+
+
+2008-03-15T20:10:11.000000Z
+8a641f6536e94f79dceca98cc1219a68
+2008-05-11T21:25:22.203076Z
+1
+peterc
+has-props
+
+GreenLaser1Small.png
+file
+
+
+
+
+2008-03-15T13:48:14.252275Z
+4f43544318a65dc7739612710f227f02
+2008-05-11T21:25:22.203076Z
+1
+peterc
+has-props
+
+Gun1Small.png
+file
+
+
+
+
+2008-03-15T13:43:48.177275Z
+9e4f57a5f0fdd8cae31a177e865b9cc9
+2008-05-11T21:25:22.203076Z
+1
+peterc
+has-props
+
+LaserAnimation.png
+file
+
+
+
+
+2008-03-31T02:57:33.246000Z
+cd5eb55ce79d170129db1d8d3a9d1446
+2008-05-11T21:25:22.203076Z
+1
+peterc
+has-props
+

@@ -1,0 +1,78 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using Zunix.Graphics;
+
+namespace Zunix.Backgrounds
+{
+    public class Background : GameObject
+    {
+        private Vector2 yscreenpos, modifiedorigin;
+        private int screenheight, screenwidth;
+ 
+        /// <summary>
+        /// The Y Position where the background is.
+        /// </summary>
+        public Vector2 YScreenPosition
+        {
+            get { return yscreenpos; }
+            set { yscreenpos = value; }
+        }
+
+        public Background()
+        {
+
+        }
+        public override void LoadContent(GraphicsDevice device, SpriteBatch spriteBatch, Texture2D backgroundTexture)
+        {
+            base.LoadContent(device, spriteBatch, backgroundTexture);
+            
+            // Get the screen height and width
+            screenheight = device.Viewport.Height;
+            screenwidth = device.Viewport.Width;
+
+            // Set the origin so that we're drawing from the 
+            // center of the top edge.
+            this.modifiedorigin = new Vector2(Sprite.Width / 2, 0);
+
+            // Set the screen position to the center of the screen.
+            yscreenpos = new Vector2(modifiedorigin.X, screenheight / 2);
+
+            // Set some properties so it's visible
+            Layer = 0f;
+            Alive = true;
+
+
+
+        }
+        public override void Update(GameTime gameTime)
+        {
+            // The time since Update was called last.
+            float deltaY = (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
+            
+            // Move the background down by the number of elapsed seconds.
+            yscreenpos.Y += deltaY;
+
+            // Mod it and move it accordingly.
+            yscreenpos.Y = yscreenpos.Y % Sprite.Height;
+
+            // Send to GameTexture Update
+            base.Update(gameTime);
+        }
+        public void Draw(GameTime gameTime)
+        {
+            // TOFIX: Make it so this background draw integrates with a background.Draw() method
+            // Draw the texture, if it is still onscreen.
+            if (yscreenpos.Y < screenheight)
+            {
+                SpriteBatch.Draw(Sprite, yscreenpos, Source,
+                     Color.White, 0, this.modifiedorigin, 1, SpriteEffects.None, Layer + 0.1f);
+            }
+
+            // Draw the texture a second time, behind the first,
+            // to create the scrolling illusion.
+            SpriteBatch.Draw(Sprite, yscreenpos - new Vector2(0, Sprite.Height), Source,
+                 Color, Rotation, this.modifiedorigin, Scale, SpriteEffects, Layer);
+        } 
+    }
+}

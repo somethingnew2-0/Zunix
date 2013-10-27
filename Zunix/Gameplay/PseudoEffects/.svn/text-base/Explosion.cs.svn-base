@@ -1,0 +1,8 @@
+using Zunix.Graphics;
+
+namespace Zunix.Explosions
+{
+    public class Explosion : AniObject
+    {
+    }
+}

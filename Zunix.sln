@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zunix", "Zunix\Zunix.csproj", "{F38B6A63-EBAC-457E-9DC6-C17F17DF9960}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Zune = Debug|Zune
+		Release|Zune = Release|Zune
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F38B6A63-EBAC-457E-9DC6-C17F17DF9960}.Debug|Zune.ActiveCfg = Debug|Zune
+		{F38B6A63-EBAC-457E-9DC6-C17F17DF9960}.Debug|Zune.Build.0 = Debug|Zune
+		{F38B6A63-EBAC-457E-9DC6-C17F17DF9960}.Debug|Zune.Deploy.0 = Debug|Zune
+		{F38B6A63-EBAC-457E-9DC6-C17F17DF9960}.Release|Zune.ActiveCfg = Release|Zune
+		{F38B6A63-EBAC-457E-9DC6-C17F17DF9960}.Release|Zune.Build.0 = Release|Zune
+		{F38B6A63-EBAC-457E-9DC6-C17F17DF9960}.Release|Zune.Deploy.0 = Release|Zune
+		{7A22861F-F327-4FBB-916C-7E602E7BCA6D}.Debug|Zune.ActiveCfg = Debug|Zune
+		{7A22861F-F327-4FBB-916C-7E602E7BCA6D}.Release|Zune.ActiveCfg = Release|Zune
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

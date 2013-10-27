@@ -1,0 +1,134 @@
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Zunix.Vehicles;
+
+namespace Zunix.Weapons
+{
+    public class Lasers
+    {
+        private List<Weapon> lasers = new List<Weapon>();
+
+        // Rectangle the size of the viewport to check if a laser is outside and alive
+        private Rectangle viewportRect;
+
+        private const int maxLasers = 8;
+        private const float greenLaserSpeed = 3.0f;
+        private const float redLaserSpeed = 4.0f;
+
+        private float millisecbetweenshots = 250f;
+
+        private float time = 0f;
+        
+        public List<Weapon> LaserList
+        {
+            get { return lasers; }
+            set { lasers = value; }
+        }
+
+        public Lasers()
+        {
+            for (int i = 0; i < maxLasers; i++)
+            {
+                lasers.Add(new Weapon());
+            }
+        }
+        public void LoadContent(GraphicsDevice device, SpriteBatch spriteBatch, Texture2D laserAnimation, Vector2 sourceSize)
+        {
+            // Add the laser animation into the list
+            foreach (Weapon laser in lasers)
+            {
+                laser.LoadContent(device, spriteBatch, laserAnimation, sourceSize);
+            }
+
+            // Create the viewportRect
+            viewportRect = new Rectangle(0, 0,
+                device.Viewport.Width,
+                device.Viewport.Height + 10);
+	        
+        }
+        public void Update(GameTime gameTime, PlayerTanks tank)
+        {
+            // Checks to fire or not
+            time += gameTime.ElapsedGameTime.Milliseconds;
+            if (time > millisecbetweenshots)
+            {
+                FireLaser(tank, gameTime);
+                // Reset the time
+                time = 0f;
+            }
+            
+            // Check to see if the lasers are still alive
+            UpdateLasers(gameTime, tank);
+
+            // If they aren't make them invisible 
+            //(this isn't really nesscessary because they're already off the viewport)
+            foreach (Weapon laser in lasers)
+            {
+                laser.Update(gameTime);
+            }
+        }
+        public void Draw(GameTime gameTime)
+        {
+            // Draw each laser
+            foreach (Weapon laser in lasers)
+            {
+                laser.Draw();
+            }
+        }
+
+        public void FireLaser(PlayerTanks tank, GameTime gameTime)
+        {
+
+            foreach (Weapon laser in lasers)
+            {
+                if (laser.Alive == false)
+                {
+                    // TODO: Play the Laser Sound
+
+                    laser.Alive = true;
+
+                    laser.Position = new Vector2(tank.PlayersList[0].Position.X, tank.PlayersList[0].Position.Y - (float)(tank.PlayersList[0].ActualSize.Y / 2));
+
+                    //Determine velocity using sine and
+                    //cosine of the cannon's rotation angle,
+                    //then scale by 5 to speed up the ball.
+                    laser.Velocity = new Vector2(0, -1) * greenLaserSpeed;
+                    return;
+                }
+            }
+        }
+        private void UpdateLasers(GameTime gameTime, PlayerTanks tank)
+        {
+            foreach (Weapon laser in lasers)
+            {
+                laser.Update(gameTime);
+                if (laser.Alive == true)
+                {
+                    //Check if the laser is contained within
+                    //the screen-sized rectangle. If not,
+                    //kill the laser.
+                    laser.Position += laser.Velocity;
+                    if (!viewportRect.Contains(new Point(
+                        (int)(laser.Position.X), (int)(laser.Position.Y))))
+                    {
+                        laser.Alive = false;
+                    }
+                }
+            }
+        } 
+    }
+
+    public enum Laser
+    {
+        Green,
+        Red,
+        Blue,
+        DoubleGreen,
+        DoubleRed,
+        DoubleBlue,
+        TripleGreen,
+        TripleRed,
+        TripleBlue
+    }
+}

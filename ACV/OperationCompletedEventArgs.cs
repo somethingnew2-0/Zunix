@@ -1,0 +1,43 @@
+using System;
+
+namespace ACV
+{
+    /// <summary>
+    /// Custom EventArgs class used by the NetworkBusyScreen.OperationCompleted event.
+    /// </summary>
+    /// <remarks>Based on a class in the Network Game State Management sample.</remarks>
+    class OperationCompletedEventArgs : EventArgs
+    {
+        #region Properties
+
+
+        /// <summary>
+        /// Gets or sets the IAsyncResult associated with
+        /// the network operation that has just completed.
+        /// </summary>
+        public IAsyncResult AsyncResult
+        {
+            get { return asyncResult; }
+            set { asyncResult = value; }
+        }
+
+        IAsyncResult asyncResult;
+
+
+        #endregion
+
+        #region Initialization
+
+
+        /// <summary>
+        /// Constructs a new event arguments class.
+        /// </summary>
+        public OperationCompletedEventArgs(IAsyncResult asyncResult)
+        {
+            this.asyncResult = asyncResult;
+        }
+
+
+        #endregion
+    }
+}
